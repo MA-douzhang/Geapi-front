@@ -35,6 +35,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseObject_ = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
   type BaseResponsePageInterfaceInfo_ = {
     code?: number;
     data?: PageInterfaceInfo_;
@@ -148,6 +154,14 @@ declare namespace API {
     status?: number;
     url?: string;
     userId?: number;
+  };
+
+  type InterfaceInfoInvokeRequest = {
+    id?: number;
+    method?: string;
+    requestHeader?: string;
+    responseHeader?: string;
+    userRequestParams?: string;
   };
 
   type InterfaceInfoUpdateRequest = {
@@ -336,10 +350,12 @@ declare namespace API {
   };
 
   type User = {
+    accessKey?: string;
     createTime?: string;
     id?: number;
     isDelete?: number;
     mpOpenId?: string;
+    secretKey?: string;
     unionId?: string;
     updateTime?: string;
     userAccount?: string;
