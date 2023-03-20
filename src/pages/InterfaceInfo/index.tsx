@@ -1,3 +1,4 @@
+// @ts-ignore
 import {PageContainer} from '@ant-design/pro-components';
 import {useModel} from '@umijs/max';
 import {Badge, Card, Descriptions, Form, List, message, theme, Input, Button} from 'antd';
