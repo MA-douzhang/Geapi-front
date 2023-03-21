@@ -17,16 +17,16 @@ export type GlobalHeaderRightProps = {
 
 export const AvatarName = () => {
   const { initialState } = useModel('@@initialState');
-  const { currentUser } = initialState || {};
-  return <span className="anticon">{currentUser?.name}</span>;
+  const  currentUser  = initialState || {};
+  return <span className="anticon">{currentUser?.userName}</span>;
 };
 
 export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, children }) => {
   /**
    * 退出登录，并且将当前的 url 保存
    */
-  const loginOut = async () => {
-    await outLogin();
+  const userLogout = async () => {
+    await userLogoutUsingPOST();
     const { search, pathname } = window.location;
     const urlParams = new URL(window.location.href).searchParams;
     /** 此方法会跳转到 redirect 参数所在的位置 */
@@ -65,7 +65,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
         flushSync(() => {
           setInitialState((s) => ({ ...s, currentUser: undefined }));
         });
-        userLogoutUsingPOST();
+        userLogout();
         return;
       }
       history.push(`/account/${key}`);
@@ -89,12 +89,14 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
     return loading;
   }
 
-  const { currentUser } = initialState;
+  const  currentUser  = initialState.loginUser;
 
-  if (!currentUser || !currentUser.name) {
+  if (!currentUser || !currentUser.userName) {
     return loading;
   }
-
+  if (currentUser){
+    menu = true;
+  }
   const menuItems = [
     ...(menu
       ? [

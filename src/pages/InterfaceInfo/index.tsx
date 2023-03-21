@@ -1,7 +1,7 @@
 // @ts-ignore
 import {PageContainer} from '@ant-design/pro-components';
 import {useModel} from '@umijs/max';
-import {Badge, Card, Descriptions, Form, List, message, theme, Input, Button} from 'antd';
+import {Badge, Card, Descriptions, Form, List, message, theme, Input, Button, Space, Progress} from 'antd';
 import React, {useEffect, useState} from 'react';
 import {
   getInterfaceInfoByIdUsingGET, invokeInterfaceInfoUsingPOST,
@@ -65,11 +65,16 @@ const Index: React.FC = () => {
       <Card>
         {data ? (
           <Descriptions title={data.name} column={1}>
+            {/*//todo 封装后端参数转递剩余调用次数*/}
+            <Descriptions.Item label="剩余调用次数">
+              <Space wrap>
+                <Progress type="circle" percent={20} format={(percent) => `${percent} 次`} />
+              </Space>
+            </Descriptions.Item>
             <Descriptions.Item label="接口状态" span={3}>
               <Badge status="processing" text={data.status ? '开启' : '关闭'}/>
             </Descriptions.Item>
             <Descriptions.Item label="描述">{data.description}</Descriptions.Item>
-            <Descriptions.Item label="请求地址">{data.url}</Descriptions.Item>
             <Descriptions.Item label="请求方法">{data.method}</Descriptions.Item>
             <Descriptions.Item label="请求参数">{data.requestParams}</Descriptions.Item>
             <Descriptions.Item label="请求头">{data.requestHeader}</Descriptions.Item>

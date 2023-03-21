@@ -121,7 +121,6 @@ const TableList: React.FC = () => {
    */
   const handleOnline = async (record: API.IdRequest) => {
     const hide = message.loading('发布中');
-    if (!record) return true;
     try {
       await onlineInterfaceInfoUsingPOST({
         id:record.id,
@@ -144,7 +143,6 @@ const TableList: React.FC = () => {
    */
   const handleOffline = async (record: API.IdRequest) => {
     const hide = message.loading('下线中');
-    if (!record) return true;
     try {
       await offlineInterfaceInfoUsingPOST({
         id:record.id,
@@ -256,7 +254,8 @@ const TableList: React.FC = () => {
           修改
         </a>,
         record.status === 0 ?<a
-          key="config"
+          type="online"
+          key="push"
           onClick={() => {
             handleOnline(record);
           }}
@@ -265,7 +264,7 @@ const TableList: React.FC = () => {
         </a> :null,
         record.status === 1 ?<Button
           type="text"
-          key="config"
+          key="offline"
           danger
           onClick={() => {
             handleOffline(record);
@@ -275,7 +274,7 @@ const TableList: React.FC = () => {
         </Button>:null,
         <Button
           type="text"
-          key="config"
+          key="remove"
           danger
           onClick={() => {
             handleRemove(record);
@@ -350,16 +349,6 @@ const TableList: React.FC = () => {
             </div>
           }
         >
-          <Button
-            onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
-          >
-            批量删除
-          </Button>
-          <Button type="primary">批量审批</Button>
         </FooterToolbar>
       )}
       <ModalForm

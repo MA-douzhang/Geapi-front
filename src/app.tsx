@@ -9,7 +9,7 @@ import { requestConfig } from './requestConfig';
 import {getLoginUserUsingGET} from "@/services/geapi-backend/userController";
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
-
+const registerPath = '/user/register';
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
@@ -34,7 +34,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
   return {
     actionsRender: () => [<Question key="doc" />],
     avatarProps: {
-      src: initialState?.loginUser?.userName,
+      src: initialState?.loginUser?.userAvatar,
       title: <AvatarName />,
       render: (_, avatarChildren) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
@@ -48,7 +48,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       const { location } = history;
       const home ='/'
       // 如果没有登录，重定向到 login
-      if (!initialState?.loginUser && location.pathname !== loginPath && location.pathname !== home) {
+      if (!initialState?.loginUser && location.pathname !== loginPath && location.pathname !== home ) {
         history.push(loginPath);
       }
     },
