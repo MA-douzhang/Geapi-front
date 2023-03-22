@@ -11,9 +11,9 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseInterfaceInfo_ = {
+  type BaseResponseInterfaceInfoVO_ = {
     code?: number;
-    data?: InterfaceInfo;
+    data?: InterfaceInfoVO;
     message?: string;
   };
 
@@ -216,6 +216,7 @@ declare namespace API {
     description?: string;
     id?: number;
     isDelete?: number;
+    leftNum?: number;
     method?: string;
     name?: string;
     requestHeader?: string;

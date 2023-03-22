@@ -13,6 +13,12 @@ export default [
     hideInMenu: true
   },
   {
+    path: '/account/settings',
+    name: '个人信息',
+    icon: 'smile',
+    component: './Account/settings',
+  },
+  {
     path: '/user',
     layout: false,
     routes: [

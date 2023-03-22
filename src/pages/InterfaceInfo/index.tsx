@@ -66,9 +66,10 @@ const Index: React.FC = () => {
         {data ? (
           <Descriptions title={data.name} column={1}>
             {/*//todo 封装后端参数转递剩余调用次数*/}
+            <Descriptions.Item label="已经调用次数">{data.totalNum ? data.totalNum : 0}</Descriptions.Item>
             <Descriptions.Item label="剩余调用次数">
               <Space wrap>
-                <Progress type="circle" percent={20} format={(percent) => `${percent} 次`} />
+                <Progress type="circle" percent={data.leftNum} format={(percent) => `${percent} 次`} />
               </Space>
             </Descriptions.Item>
             <Descriptions.Item label="接口状态" span={3}>
@@ -106,7 +107,10 @@ const Index: React.FC = () => {
         </Form>
       </Card>
       <Card>
-        {invokeRes}
+        <Input.TextArea
+          autoSize
+          value={invokeRes}>
+        </Input.TextArea>
       </Card>
     </PageContainer>
   );
