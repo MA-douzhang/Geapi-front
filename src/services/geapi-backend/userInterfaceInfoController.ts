@@ -91,3 +91,18 @@ export async function updateUserInterfaceInfoUsingPOST(
     ...(options || {}),
   });
 }
+
+/** updateUserInterfaceInfoCount POST /api/userUserInterfaceInfo/updatetimes */
+export async function updateUserInterfaceInfoCountUsingPOST(
+  body: API.UserInterfaceInfoUpdateRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseBoolean_>('/api/userUserInterfaceInfo/updatetimes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}

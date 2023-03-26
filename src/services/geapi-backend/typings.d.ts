@@ -492,9 +492,10 @@ declare namespace API {
 
   type UserInterfaceInfoUpdateRequest = {
     id?: number;
+    interfaceInfoId?: number;
     leftNum?: number;
     status?: number;
-    totalNum?: number;
+    userId?: number;
   };
 
   type UserInterfaceVO = {

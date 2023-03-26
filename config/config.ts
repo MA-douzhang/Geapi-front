@@ -5,6 +5,7 @@ import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
 const { REACT_APP_ENV = 'dev' } = process.env;
+
 export default defineConfig({
   /**
    * @name 开启 hash 模式
@@ -12,6 +13,7 @@ export default defineConfig({
    * @doc https://umijs.org/docs/api/config#hash
    */
   hash: true,
+  exportStatic: {},
   /**
    * @name 兼容性设置
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
@@ -62,6 +64,7 @@ export default defineConfig({
    * @name 数据流插件
    * @@doc https://umijs.org/docs/max/data-flow
    */
+
   model: {},
   /**
    * 一个全局的初始数据流，可以用它在插件之间共享数据
@@ -126,7 +129,7 @@ export default defineConfig({
   openAPI: [
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath: 'http://localhost:9092/api//v2/api-docs',
+      schemaPath: 'http://47.120.5.119:9092/api//v2/api-docs',
       projectName: 'geapi-backend',
     },
   ],
